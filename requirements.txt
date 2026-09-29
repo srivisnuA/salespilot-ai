@@ -1,0 +1,15 @@
+# SalesPilot AI - Backend dependencies
+
+fastapi
+uvicorn[standard]
+sqlalchemy
+pymysql
+pydantic
+pydantic-settings
+python-dotenv
+httpx
+openai
+scikit-learn
+pandas
+numpy
+python-multipart
