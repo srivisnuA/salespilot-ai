@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-200: #bfd3fe;
+  --color-brand-300: #93b4fd;
+  --color-brand-400: #6090fa;
+  --color-brand-500: #3b6ef6;
+  --color-brand-600: #2554eb;
+  --color-brand-700: #1d42d8;
+  --color-brand-800: #1e39af;
+  --color-brand-900: #1e348a;
+}
+
+html, body, #root { height: 100%; }
+body { background: #f1f5f9; color: #0f172a; -webkit-font-smoothing: antialiased; }
+
+@utility card {
+  @apply bg-white rounded-xl shadow-sm border border-slate-200;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed;
+}
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed bg-brand-600 text-white hover:bg-brand-700;
+}
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed bg-white border border-slate-300 text-slate-700 hover:bg-slate-50;
+}
+@utility btn-danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed bg-red-600 text-white hover:bg-red-700;
+}
+@utility input {
+  @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500;
+}
+@utility label {
+  @apply block text-xs font-medium text-slate-600 mb-1;
+}
+@utility badge {
+  @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold;
+}
+@utility th {
+  @apply px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide;
+}
+@utility td {
+  @apply px-4 py-3 text-sm text-slate-700;
+}
+
+/* ---- Mobile responsiveness ---- */
+
+/* Never let the page scroll horizontally; inner containers scroll instead. */
+html, body { overflow-x: hidden; }
+
+/* Modals: respect small viewports, internal scroll, no background bleed. */
+@media (max-width: 767px) {
+  .fixed.inset-0 > .card,
+  .fixed.inset-0 > form.card {
+    max-width: calc(100vw - 1.25rem) !important;
+    max-height: calc(100dvh - 2.5rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Tighter modal padding on phones */
+  .fixed.inset-0 { padding: 0.75rem !important; }
+  /* Charts must never stretch beyond the card */
+  .card { min-width: 0; }
+  .recharts-responsive-container { min-width: 0; }
+  /* Tables inside overflow containers keep min-width without breaking the page */
+  .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+}
+
+/* Comfortable touch targets for the small action buttons on phones */
+@media (max-width: 767px) {
+  .btn, .btn-primary, .btn-secondary, .btn-danger { min-height: 40px; }
+}
+
+/* Recharts legends/labels: wrap instead of overflowing on small screens */
+@media (max-width: 767px) {
+  .recharts-legend-wrapper { max-width: 100% !important; }
+  .recharts-legend-wrapper ul, .recharts-legend-item { flex-wrap: wrap; }
+  .recharts-text tspan, .recharts-cartesian-axis-tick text { font-size: 10px; }
+}
+
+/* Tighter table cell padding on phones so lead tables fit better */
+@media (max-width: 640px) {
+  .th, .td { padding-left: 0.5rem; padding-right: 0.5rem; }
+}
